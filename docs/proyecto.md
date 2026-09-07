@@ -42,7 +42,9 @@ Indicar opción:
 
 # Resultado esperado
 
-En el desarrollo de la simulación, se debe ir generando un registro de la información que se va produciendo para que una vez finalice la simulación de las apuestas, se consolide esta infomración en tablas que despues serán exportadas en archivos csv y almacenados en una carpeta que corresponde a la simulación ejecutada.
+En el desarrollo de la simulación, se debe ir generando un registro de la información que se va produciendo para que una vez finalice la simulación de las apuestas, se consolide esta información en tablas que despues serán exportadas en archivos csv y almacenados en una carpeta que corresponde a la simulación ejecutada.
+
+Se debe llevar una tabla en un archivo csv de los resultados generales de las simulaciones realizadas.
 
  se deben generar una carpeta que almacenara diversas tablas que en formato csv y serán almacenadas en una carpeta que va contener la siguiente información:
 
