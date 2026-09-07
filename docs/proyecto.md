@@ -42,20 +42,21 @@ Indicar opción:
 
 # Resultado esperado
 
-En el desarrollo de la simulación, se debe ir generando un registro de la información que se va generando para que una vez finalice la simulación de las apuesetas, se consolide esta infomración en tablas que despues serán exportadas en archivos csv y almacenados en una carpeta que corresponde a la simulación ejecutada.
+En el desarrollo de la simulación, se debe ir generando un registro de la información que se va produciendo para que una vez finalice la simulación de las apuestas, se consolide esta infomración en tablas que despues serán exportadas en archivos csv y almacenados en una carpeta que corresponde a la simulación ejecutada.
 
  se deben generar una carpeta que almacenara diversas tablas que en formato csv y serán almacenadas en una carpeta que va contener la siguiente información:
 
 - No apuesta
+- Apuesta
 - Monto
 - Cantidad apostada
 - Ganancia
 - Monto final
-- Apuesta
-
-
 
 # PDTES
 
-Indicar formato de tablas para que se exporte
-Indicar el nombre de la caprte que almacenara las tablas
+- Indicar formato de tablas para que se exporte.
+    - Registros de números obtenidos.
+    - Registro de la partida simulada.
+- Indicar el nombre de la caprte que almacenara las tablas.
+- Generar un registro de las simulaciones ejecutadas almacenando los resultados generales.
