@@ -25,18 +25,37 @@ Para realizar las apuestas se tomara los siguientes valores:
 # Ejemplo de la interfaz.
 
 ```text
---- SIMULACIÓN DE RULETA ---
+    --- SIMULACIÓN DE RULETA ---
 
 Monto para iniciar: 50
 Cantidad de apuestas: 5
 
-[] Cambiar monto inicial
-[] Cambiar cantidad de apuestas
-[] Indicar las apuestas
-[] Empezar simulación
+Selecione una opción:
+
+    [A] Cambiar monto inicial
+    [B] Cambiar cantidad de apuestas
+    [C] Indicar las apuestas
+    [D] Empezar simulación
+
+Indicar opción:
 ```
 
 # Resultado esperado
 
-Cuando finalice la simulación de las apuesetas, se debe generar una tabla que despues será exportada en un archivo csv que va contener la siguiente información:
+En el desarrollo de la simulación, se debe ir generando un registro de la información que se va generando para que una vez finalice la simulación de las apuesetas, se consolide esta infomración en tablas que despues serán exportadas en archivos csv y almacenados en una carpeta que corresponde a la simulación ejecutada.
 
+ se deben generar una carpeta que almacenara diversas tablas que en formato csv y serán almacenadas en una carpeta que va contener la siguiente información:
+
+- No apuesta
+- Monto
+- Cantidad apostada
+- Ganancia
+- Monto final
+- Apuesta
+
+
+
+# PDTES
+
+Indicar formato de tablas para que se exporte
+Indicar el nombre de la caprte que almacenara las tablas
