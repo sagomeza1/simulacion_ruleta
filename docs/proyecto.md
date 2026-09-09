@@ -14,13 +14,15 @@ Se esta pensando una interfaz CLI, con un programa que se base en Input/Output, 
 
 Para realizar las apuestas se tomara los siguientes valores:
 
-- $1 (Blanco/Gris)
-- $5 (Rojo)
-- $10 (Azul)
-- $25 (Verde)
-- $100 (Negro)
-- $500 (Morado/Violeta)
-- $1000 (Naranja/Amarillo)
+|Denominación|Color|
+|--|--|
+| $1 | Blanco/Gris |
+| $5 | Rojo |
+| $10 | Azul |
+| $25 | Verde |
+| $100 | Negro |
+| $500 | Morado/Violeta |
+| $1000 | Naranja/Amarillo |
 
 # Ejemplo de la interfaz.
 
@@ -46,21 +48,36 @@ En el desarrollo de la simulación, se debe ir generando un registro de la infor
 
 El nombre de la carpeta que almacene las tablas producto de la simulación debera ir con el siguiente formato `yyyymmdd_hhmm` indicando la fecha de la simulación.
 
-Se debe llevar una tabla en un archivo csv de los resultados generales de las simulaciones realizadas.
+Se debe llevar una tabla en un archivo csv con el nombre `registros.csv` de los resultados generales de las simulaciones realizadas.
 
- se deben generar una carpeta que almacenara diversas tablas que en formato csv y serán almacenadas en una carpeta que va contener la siguiente información:
+## Registros de las simulaciones
 
-- No apuesta
-- Apuesta
-- Monto
-- Cantidad apostada
-- Ganancia
-- Monto final
+Ejemplo de la tabla `registros.csv`:
+
+|Simulación| Total apostado | Total Ganado |
+|:---------|:---------------|:-------------|
+|20261001_1628|$150000 | $450000 |
+|20261001_1454|$150000 | $70000 |
+
+## Simulaciones
+
+En la carpeta `yyyymmdd_hhmm` se debera guardar las tablas `apuestas.csv`, `numeros.csv` y `stats.csv`.
+
+La tabla `apuestas.csv` debera registrar la siguiente información
+
+|Columna|Descripción|
+|:------------------|:----|
+|No apuesta         |Cantidad de apuestas registradas|
+|Apuesta            |La apuesta realizada sobre la mesa|
+|Monto              |Cantidad de dinero en el bolsillo (No se cuenta el que se encuentra en la mesa)|
+|Cantidad apostada  |Cantidad de dinero sobre la mesa en la apuesta realizada|
+|Ganancia           |Cantidad de dinero ganado con la apuesta realizada|
+|Monto final        |Cantidad de dinero en el bolsillo más la ganancia obtenida|
 
 # PDTES
 
 - Indicar formato de tablas para que se exporte.
-    - Registros de números obtenidos.
-    - Registro de la partida simulada.
+  - Registros de números obtenidos.
+  - Registro de la partida simulada.
 - Indicar el nombre de la caprte que almacenara las tablas.
 - Generar un registro de las simulaciones ejecutadas almacenando los resultados generales.
