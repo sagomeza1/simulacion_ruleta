@@ -1,26 +1,39 @@
-# Contenido del archivo: /simulacion_ruleta/simulacion_ruleta/src/simulacion_ruleta/simulacion/modos.py
+from typing import Optional
+
+from .gestor import Simulador
+
 
 class ModoSencillo:
+    def __init__(self, gestor: Optional[Simulador] = None) -> None:
+        self.gestor = gestor or Simulador()
+
     def jugar(self):
-        # Lógica para el modo sencillo
-        pass
+        return self.gestor.ejecutar_ronda()
+
 
 class ModoSimulacionEstatica:
+    def __init__(self, gestor: Optional[Simulador] = None) -> None:
+        self.gestor = gestor or Simulador()
+
     def jugar(self):
-        # Lógica para el modo de simulación estática
-        pass
+        return self.gestor.ejecutar_simulacion()
+
 
 class ModoSimulacionDinamica:
-    def jugar(self):
-        # Lógica para el modo de simulación dinámica
-        pass
+    def __init__(self, gestor: Optional[Simulador] = None) -> None:
+        self.gestor = gestor or Simulador()
 
-def seleccionar_modo(modo):
-    if modo == 'sencillo':
-        return ModoSencillo()
-    elif modo == 'estatica':
-        return ModoSimulacionEstatica()
-    elif modo == 'dinamica':
-        return ModoSimulacionDinamica()
-    else:
-        raise ValueError("Modo de juego no válido")
+    def jugar(self):
+        return self.gestor.ejecutar_ronda()
+
+
+def seleccionar_modo(modo: str, gestor: Optional[Simulador] = None):
+    modos = {
+        "sencillo": ModoSencillo,
+        "estatica": ModoSimulacionEstatica,
+        "dinamica": ModoSimulacionDinamica,
+    }
+    try:
+        return modos[modo.strip().lower()](gestor)
+    except (AttributeError, KeyError) as error:
+        raise ValueError("Modo de juego no válido") from error
