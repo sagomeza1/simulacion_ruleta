@@ -7,6 +7,7 @@ import sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
 from roulette.bets import InvalidBetError, parse_bet_line, total_amount
+from roulette.board import print_board
 from roulette.engine import RouletteEngine, SimulationResult, StopCause
 from roulette.storage import persist_simulation
 from roulette.wheel import color_of
@@ -35,10 +36,12 @@ def ask_roulette_type() -> str:
         print("    [1] Europea")
         print("    [2] Americana")
         choice = ask("Indicar opción: ")
-        if choice == "1":
-            return "europea"
-        if choice == "2":
-            return "americana"
+        if choice in ("1", "2"):
+            roulette_type = "europea" if choice == "1" else "americana"
+            print()
+            print_board(roulette_type)
+            print()
+            return roulette_type
         print("Opción inválida.\n")
 
 
