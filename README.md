@@ -74,6 +74,9 @@ Define una **apuesta fija** que se repite automáticamente durante N partidas. P
 ### Simulación Dinámica `[C]`
 Define un **pool de apuestas** candidatas; en cada ronda el sistema elige una al azar del pool y la ejecuta. Útil para comparar el comportamiento de distintas apuestas mezcladas a lo largo de muchas iteraciones.
 
+### Simulación Mixta `[D]`
+Combina lo mejor de los dos modos anteriores: defines una **apuesta fija** (parte Estática, se repite siempre) y un **pool de apuestas** (parte Dinámica, se elige una al azar en cada ronda). En cada jugada se apuestan **ambas simultáneamente** (apuesta fija + apuesta dinámica elegida), permitiendo analizar estrategias combinadas (ej. una cobertura base constante + exploración aleatoria adicional).
+
 ---
 
 ## 4. Codificación de apuestas

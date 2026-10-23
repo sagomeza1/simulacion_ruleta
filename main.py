@@ -186,6 +186,36 @@ def modo_dinamica() -> None:
     print_result_summary(result, folder)
 
 
+def modo_mixta() -> None:
+    print_header("Simulación Mixta")
+    roulette_type = ask_roulette_type()
+    monto_inicial = ask_int("Monto inicial: $", min_value=1)
+    num_games = ask_int("Cantidad de partidas a simular: ", min_value=1)
+    apuesta_fija = ask_bet_line(
+        "Apuesta fija (parte Estática, ej. 10SU[3], 20RE): ", roulette_type
+    )
+    pool_raw = ask(
+        "Pool de apuestas elegibles (parte Dinámica), separadas por ' | ' "
+        "(ej. 10RE | 10BL | 5SU[7] | 15DZ[1st]): "
+    )
+    pool_lines = [p.strip() for p in pool_raw.split("|") if p.strip()]
+    valid_pool = []
+    for line in pool_lines:
+        try:
+            parse_bet_line(line, roulette_type)
+            valid_pool.append(line)
+        except InvalidBetError as exc:
+            print(f"Apuesta del pool ignorada por ser inválida ('{line}'): {exc}")
+    if not valid_pool:
+        print("No hay apuestas válidas en el pool. Cancelando.")
+        return
+
+    engine = RouletteEngine(roulette_type)
+    result = engine.run_mixed(monto_inicial, apuesta_fija, valid_pool, num_games)
+    folder = persist_simulation(result, BASE_DIR, roulette_type)
+    print_result_summary(result, folder)
+
+
 def main() -> None:
     while True:
         print_header()
@@ -193,6 +223,7 @@ def main() -> None:
         print("    [A] Modo Sencillo")
         print("    [B] Simulación Estática")
         print("    [C] Simulación Dinámica")
+        print("    [D] Simulación Mixta (Estática + Dinámica)")
         print("    [X] Salir\n")
         choice = ask("Indicar opción: ").upper()
         print()
@@ -203,6 +234,8 @@ def main() -> None:
             modo_estatica()
         elif choice == "C":
             modo_dinamica()
+        elif choice == "D":
+            modo_mixta()
         elif choice == "X":
             print("¡Hasta pronto!")
             break

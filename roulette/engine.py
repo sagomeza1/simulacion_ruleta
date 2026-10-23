@@ -146,6 +146,42 @@ class RouletteEngine:
         result.balance_final = balance
         return result
 
+    def run_mixed(
+        self,
+        initial_amount: int,
+        fixed_bet_line: str,
+        bet_pool_lines: List[str],
+        num_games: int,
+    ) -> SimulationResult:
+        """Modo Simulación Mixta: combina una apuesta fija (Estática) con una apuesta
+        elegida al azar del pool (Dinámica) en cada ronda, jugadas simultáneamente.
+
+        La 'Apuesta fija' se repite siempre; además, en cada ronda se suma al tapete
+        una apuesta tomada al azar del pool dinámico. El monto apostado y la ganancia
+        de la ronda se calculan sobre la unión de ambas.
+        """
+        result = SimulationResult(
+            modo="Mixta",
+            ruleta=self.roulette_type.capitalize(),
+            monto_inicial=initial_amount,
+            balance_final=initial_amount,
+        )
+        balance = initial_amount
+
+        for i in range(1, num_games + 1):
+            dynamic_line = self.rng.choice(bet_pool_lines)
+            combined_line = f"{fixed_bet_line}, {dynamic_line}" if fixed_bet_line else dynamic_line
+            stake = total_amount(parse_bet_line(combined_line, self.roulette_type))  # type: ignore[arg-type]
+            if balance <= 0 or balance < stake:
+                result.causa_fin = StopCause.BANCARROTA
+                break
+            balance = self._play_round(i, combined_line, balance, result)
+        else:
+            result.causa_fin = StopCause.JUEGOS_COMPLETADOS
+
+        result.balance_final = balance
+        return result
+
     def play_single_round(self, bet_line: str, balance: int, result: SimulationResult, round_no: int) -> int:
         """Ejecuta una única ronda interactiva (usada por el Modo Sencillo) y devuelve el balance."""
         return self._play_round(round_no, bet_line, balance, result)
